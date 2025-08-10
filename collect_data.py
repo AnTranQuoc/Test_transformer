@@ -1,4 +1,3 @@
-# collect_gesture_data.py
 import cv2
 import mediapipe as mp
 import numpy as np
@@ -9,15 +8,17 @@ mp_hands = mp.solutions.hands
 hands = mp_hands.Hands(static_image_mode=False, max_num_hands=1)
 mp_drawing = mp.solutions.drawing_utils
 
-SAVE_DIR = "gesture_data"
+SAVE_DIR = "gesture_data_tokens"
 GESTURE_NAME = input("Nhập tên cử chỉ (VD: ok, peace, fist...): ").strip().lower()
 
 if not os.path.exists(SAVE_DIR):
     os.makedirs(SAVE_DIR)
 
-# 🔍 Tìm sample_id tiếp theo cho class đang thu
 existing_files = [f for f in os.listdir(SAVE_DIR) if f.startswith(f"{GESTURE_NAME}_") and f.endswith(".npy")]
-existing_ids = [int(re.findall(rf"{GESTURE_NAME}_(\d+).npy", f)[0]) for f in existing_files if re.findall(rf"{GESTURE_NAME}_(\d+).npy", f)]
+existing_ids = [
+    int(re.findall(rf"{GESTURE_NAME}_(\d+).npy", f)[0])
+    for f in existing_files if re.findall(rf"{GESTURE_NAME}_(\d+).npy", f)
+]
 sample_id = max(existing_ids) + 1 if existing_ids else 0
 
 print(f"🟡 Bắt đầu thu thập cử chỉ '{GESTURE_NAME}' từ ID {sample_id}")
@@ -45,7 +46,7 @@ while True:
     key = cv2.waitKey(1)
     if key == ord('s') and results.multi_hand_landmarks:
         landmarks = results.multi_hand_landmarks[0].landmark
-        data = np.array([[lm.x, lm.y, lm.z] for lm in landmarks]).flatten()
+        data = np.array([[lm.x, lm.y, lm.z] for lm in landmarks], dtype=np.float32)
         filename = os.path.join(SAVE_DIR, f"{GESTURE_NAME}_{sample_id}.npy")
         np.save(filename, data)
         print(f"✅ Đã lưu: {filename}")

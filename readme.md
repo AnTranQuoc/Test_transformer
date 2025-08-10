@@ -1,1 +1,2 @@
-# áp dụng TransformerEncoder để xử lý dữ liệu keypoints
+# Áp dụng TransformerEncoder để xử lý dữ liệu keypoints
+### Phát hiện cử chỉ tay bao gồm các ký hiệu ok, nắm đấm, xoè tay, 1, 2, 3, 4, 5, like và cử chỉ bậy bạ. 
