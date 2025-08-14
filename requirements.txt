@@ -1,0 +1,13 @@
+streamlit
+torch
+numpy
+mediapipe
+opencv-python
+scikit-learn
+
+# streamlit → cho web demo
+# torch → model Transformer
+# numpy → xử lý dữ liệu
+# mediapipe → detect tay và lấy keypoints
+# opencv-python → xử lý ảnh/video từ camera
+# scikit-learn → train_test_split, classification_report
