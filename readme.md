@@ -51,7 +51,7 @@ Keypoints Sequence → Positional Encoding → TransformerEncoder → Pooling �
 
 You can install the dependencies in two ways:
 
-**1️⃣ Using `requirements.txt`:**
+**1 Using `requirements.txt`:**
 ```bash
 pip install -r requirements.txt
 ```
