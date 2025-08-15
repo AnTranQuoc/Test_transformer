@@ -15,7 +15,10 @@ The model can classify the following gestures:
 ---
 
 ## 🎥 Video Demo
-[![Watch the demo](demo_thumbnail.png)](demo_video.mp4)  
+
+https://github.com/user-attachments/assets/c77ed769-86d3-4dda-a797-06be81c8523b
+
+
 *Click the image above to watch the demo video.*
 
 ---
