@@ -3,14 +3,14 @@
 Real-time hand gesture recognition from keypoint data extracted using **MediaPipe**, powered by a **TransformerEncoder** model.  
 The model can classify the following gestures:
 
-- 👌 OK
-- ✊ Fist
-- 🖐 Open Hand
-- ☝ One Finger
-- ✌ Two Fingers
-- 🤟 Three Fingers
-- 🖖 Four Fingers
-- 🖕 Offensive Gesture
+- 👌 OK - 2000 samples
+- ✊ Fist - 1200 samples
+- 🖐 Open Hand - 2000 samples
+- ☝ One Finger - 1200 samples
+- ✌ Two Fingers - 1200 samples
+- 🤟 Three Fingers - 1201 samples
+- 🖖 Four Fingers - 1999 samples
+- 🖕 Offensive Gesture - 1201 samples
 
 ---
 
