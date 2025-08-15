@@ -1,59 +1,65 @@
 # Hand Gesture Recognition with TransformerEncoder
 
-Nhận diện cử chỉ tay thời gian thực từ dữ liệu keypoints được trích xuất bằng **MediaPipe**, sử dụng mô hình **TransformerEncoder** để phân loại các cử chỉ sau:
+Real-time hand gesture recognition from keypoint data extracted using **MediaPipe**, powered by a **TransformerEncoder** model.  
+The model can classify the following gestures:
 
 - 👌 OK
-- ✊ Nắm đấm
-- 🖐 Xòe tay
-- ☝ 1 ngón
-- ✌ 2 ngón
-- 🤟 3 ngón
-- 🖖 4 ngón
-- 🖕 Cử chỉ bậy bạ
+- ✊ Fist
+- 🖐 Open Hand
+- ☝ One Finger
+- ✌ Two Fingers
+- 🤟 Three Fingers
+- 🖖 Four Fingers
+- 🖕 Offensive Gesture
 
 ---
 
 ## 🎥 Video Demo
 [![Watch the demo](demo_thumbnail.png)](demo_video.mp4)  
-*Bấm vào hình để xem video demo kết quả chạy mô hình.*
+*Click the image above to watch the demo video.*
 
 ---
 
-## Data Sử Dụng
-Nguồn: Dữ liệu keypoints được thu thập bằng MediaPipe Hands.
-Định dạng: Mỗi mẫu là mảng (21, 3) gồm tọa độ (x, y, z) của 21 landmarks trên bàn tay.
-Tiền xử lý:
-Chuẩn hóa vị trí (dịch để cổ tay về gốc tọa độ).
-Scale kích thước bàn tay về cùng tỷ lệ.
-Số lớp: 8 lớp cử chỉ (OK, Nắm đấm, Xòe tay, 1, 2, 3, 4, Cử chỉ bậy bạ).
+## 📊 Dataset
+- **Source:** Keypoint data collected using **MediaPipe Hands**.
+- **Format:** Each sample is a `(21, 3)` array containing `(x, y, z)` coordinates of 21 hand landmarks.
+- **Preprocessing:**
+  - Normalize position (translate wrist to origin).
+  - Scale hand size to a consistent ratio.
+- **Classes:** 8 gesture classes (OK, Fist, Open Hand, 1, 2, 3, 4, Offensive Gesture).
 
 ---
 
-## Transformer Overview
-Mô hình sử dụng TransformerEncoder để xử lý chuỗi keypoints (21 điểm trên bàn tay, mỗi điểm có tọa độ (x, y, z)).
+## 🧠 Transformer Overview
+The model uses a **TransformerEncoder** to process the sequence of keypoints  
+(21 points per hand, each with coordinates `(x, y, z)`).
 
-Pipeline xử lý: Keypoints Sequence → Positional Encoding → TransformerEncoder → Pooling → Classifier
-MediaPipe phát hiện bàn tay và trích xuất keypoints (21×3).
-Chuẩn hóa dữ liệu keypoints (scale, translate).
-Mỗi frame → 1 vector (sequence length = 21, feature dim = 3).
-Positional Encoding thêm thông tin vị trí.
-TransformerEncoder học mối quan hệ không gian giữa các điểm.
-Pooling + Fully Connected Layer + Softmax → dự đoán nhãn.
+**Processing Pipeline:**
+
+Keypoints Sequence → Positional Encoding → TransformerEncoder → Pooling → Classifier
+
+1. **MediaPipe** detects the hand and extracts `(21×3)` keypoints.
+2. Normalize the keypoints (scale, translate).
+3. Each frame → one vector (`sequence length = 21`, `feature dim = 3`).
+4. Apply **Positional Encoding** to add spatial position information.
+5. **TransformerEncoder** learns spatial relationships between keypoints.
+6. **Pooling + Fully Connected Layer + Softmax** → predict gesture label.
 
 ---
 
-## 📦 Cài đặt nhanh
-Bạn có thể cài theo hai cách:
+## 📦 Quick Installation
 
-**1. Sử dụng `requirements.txt`**
+You can install the dependencies in two ways:
+
+**1️⃣ Using `requirements.txt`:**
 ```bash
 pip install -r requirements.txt
 ```
-**2. Sử dụng trực tiếp**
+**2. Install directly**
 ```bash
 pip install torch mediapipe opencv-python numpy scikit-learn
 ```
-***3. Deploy streamlit***
+***3. Deploy with Streamlit***
 ```bash
 streamlit run app.py
 ```
